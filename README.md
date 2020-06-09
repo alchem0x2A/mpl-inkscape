@@ -20,5 +20,28 @@ exported as collections of glyphs with pre-computed
 coordinates. TeX rendering using such svg file will not work
 
 Directly using svg files exported by original svg backend
-will cause the math equations to break after TeX rendering. As an example, 
-![Fig1](examples/img/ex1-log.svg) ![Fig2](examples/img/ex1-log.rendered.png)
+will cause the math equations to break after TeX rendering. As an example:
+
+svg output                 |  svg+TeX rendered
+:-------------------------:|:-------------------------:
+<img src="examples/img/ex1-log.svg" width="425"/>  |  <img src="examples/img/ex1-log.rendered.png" width="425"/>
+
+We see that the exponent in the x-axis ticks are not rendered correctly.
+
+The `backend_inksvg` in this package solves this problem. 
+In short, the problematic math text objects are written as plain text into the svg, 
+with the same coordinate / alignment as `mathtext`. 
+To use the backend, simply put the file `backend_inksvg.py` under your `PYTHONPATH` 
+and include the following line at beginning of your usual plot script
+```python
+import matplotlib as mpl
+mpl.use("module://backend_inksvg")
+```
+Or
+```python
+import matplotlib.pyplot as plt
+plt.switch_backend("module://backend_inksvg")
+```
+
+## TODO
+
