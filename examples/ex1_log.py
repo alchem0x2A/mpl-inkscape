@@ -4,6 +4,7 @@ import numpy as np
 
 mpl.rcdefaults()                # remove custom styles
 params = {"svg.fonttype": "none"}  # try to use system font in svg
+mpl.rcParams.update(**params)
 
 
 def main():
